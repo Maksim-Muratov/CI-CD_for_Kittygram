@@ -12,7 +12,8 @@ SECRET_KEY = os.getenv('SECRET_KEY', default='token')
 
 DEBUG = (os.getenv('DEBUG', 'False') == 'True')
 
-ALLOWED_HOSTS = [os.getenv('server_ip'), '127.0.0.1', 'localhost', os.getenv('domain_name')]
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1').split(',')
+# ALLOWED_HOSTS = [os.getenv('server_ip'), '127.0.0.1', 'localhost', os.getenv('domain_name')]
 
 
 INSTALLED_APPS = [
