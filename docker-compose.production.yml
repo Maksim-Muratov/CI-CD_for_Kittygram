@@ -1,8 +1,8 @@
 version: '3'
 
 volumes:
-  pg_data:
-  static:
+  pg_data_production:
+  static_volume:
   media:
 
 services:
@@ -15,19 +15,19 @@ services:
     image: muratov/kittygram_backend
     env_file: .env
     volumes:
-      - static:/static/
+      - static_volume:/backend_static
       - media:/app/media/
   frontend:
     env_file: .env
     image: muratov/kittygram_frontend
     command: cp -r /app/build/. /static/
     volumes:
-      - static:/static
+      - static_volume:/frontend_static
   gateway:
     image: muratov/kittygram_gateway
     env_file: .env
     ports:
       - 9000:80
     volumes:
-      - static:/static
+      - static_volume:/staticfiles/
       - media:/app/media/
